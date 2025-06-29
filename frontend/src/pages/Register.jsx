@@ -25,12 +25,12 @@ export const Register = () => {
       toast.error(message);
     }
 
-    if (isSuccess || user) {
+    if (isSuccess && user) {
       toast.success("Registration successful!");
       navigate("/dashboard");
+      dispatch(reset());
     }
 
-    dispatch(reset());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) =>

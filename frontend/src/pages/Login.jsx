@@ -22,15 +22,15 @@ export const Login = () => {
   useEffect(() => {
     if (isError) {
       toast.error(message);
+      dispatch(reset());
     }
 
-    if (isSuccess || user) {
+    if (isSuccess && user) {
       toast.success("Logged in successfully!");
       navigate("/dashboard");
+      dispatch(reset());
     }
-
-    dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
+  }, [isError, isSuccess, user, message, navigate, dispatch]);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
